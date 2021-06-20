@@ -88,6 +88,7 @@ function Draw() {
     };
 
     function AddPoles() {
+        if (poles.length<5)      
         var x = radius + (radius * 0.75) ;
         var y = radius - (radius * 0.34) ;
         poles.push([x + 32,y + 32]);
@@ -95,6 +96,7 @@ function Draw() {
     };
 
     function AddZeros() {
+        if (zeros.length<5)
         var x = radius + (radius * 0) ;
         var y = radius - (radius * 0) ;
         zeros.push([x + 32,y + 32]);
@@ -144,67 +146,67 @@ function Draw() {
         Draw();
     };
     google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
-    google.charts.setOnLoadCallback(drawChart_1);
-    google.charts.setOnLoadCallback(drawChart_2);
+  //   google.charts.setOnLoadCallback(drawChart);
+  //   google.charts.setOnLoadCallback(drawChart_1);
+  //   google.charts.setOnLoadCallback(drawChart_2);
 
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['2004',  1000,      400],
-      ['2005',  1170,      460],
-      ['2006',  660,       1120],
-      ['2007',  1030,      540]
-    ]);
+  // function drawChart() {
+  //   var data = google.visualization.arrayToDataTable([
+  //     ['Year', 'Sales', 'Expenses'],
+  //     ['2004',  1000,      400],
+  //     ['2005',  1170,      460],
+  //     ['2006',  660,       1120],
+  //     ['2007',  1030,      540]
+  //   ]);
 
-    var options = {
-      title: 'Poles & Zeros',
-      curveType: 'function',
-      legend: { position: 'bottom' }
-    };
+  //   var options = {
+  //     title: 'Poles & Zeros',
+  //     curveType: 'function',
+  //     legend: { position: 'bottom' }
+  //   };
 
-    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  //   var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-    chart.draw(data, options);
-  }
-  function drawChart_1() {
-    var data = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['2004',  1000,      400],
-      ['2005',  1170,      460],
-      ['2006',  660,       1120],
-      ['2007',  1030,      540]
-    ]);
+  //   chart.draw(data, options);
+  // }
+  // function drawChart_1() {
+  //   var data = google.visualization.arrayToDataTable([
+  //     ['Year', 'Sales', 'Expenses'],
+  //     ['2004',  1000,      400],
+  //     ['2005',  1170,      460],
+  //     ['2006',  660,       1120],
+  //     ['2007',  1030,      540]
+  //   ]);
 
-    var options = {
-      title: 'Poles & Zeros',
-      curveType: 'function',
-      legend: { position: 'bottom' }
-    };
+  //   var options = {
+  //     title: 'Poles & Zeros',
+  //     curveType: 'function',
+  //     legend: { position: 'bottom' }
+  //   };
 
-    var chart = new google.visualization.LineChart(document.getElementById('curve_chart_1'));
+  //   var chart = new google.visualization.LineChart(document.getElementById('curve_chart_1'));
 
-    chart.draw(data, options);
-  }
-  function drawChart_2() {
-    var data = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['2004',  1000,      400],
-      ['2005',  1170,      460],
-      ['2006',  660,       1120],
-      ['2007',  1030,      540]
-    ]);
+  //   chart.draw(data, options);
+  // }
+  // function drawChart_2() {
+  //   var data = google.visualization.arrayToDataTable([
+  //     ['Year', 'Sales', 'Expenses'],
+  //     ['2004',  1000,      400],
+  //     ['2005',  1170,      460],
+  //     ['2006',  660,       1120],
+  //     ['2007',  1030,      540]
+  //   ]);
 
-    var options = {
-      title: 'Poles & Zeros',
-      curveType: 'function',
-      legend: { position: 'bottom' }
-    };
+  //   var options = {
+  //     title: 'Poles & Zeros',
+  //     curveType: 'function',
+  //     legend: { position: 'bottom' }
+  //   };
 
-    var chart = new google.visualization.LineChart(document.getElementById('curve_chart_2'));
+  //   var chart = new google.visualization.LineChart(document.getElementById('curve_chart_2'));
 
-    chart.draw(data, options);
-  }
+  //   chart.draw(data, options);
+  // }
   
 
   
