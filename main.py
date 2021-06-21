@@ -2,29 +2,31 @@ import numpy as np
 import cmath as math
 import matplotlib.pyplot as plt
 from scipy import signal
-from flask import Flask, render_template , request
+from flask import Flask, jsonify, render_template , request
 angel = np.arange(0, 181, 1)
 app = Flask(__name__, template_folder='html', static_folder='static')
-
-
+mag=[]
+phase=[]
 
 def get_mag(zeros : list ,poles : list):
     transfer_function=get_transfer_function(zeros, poles)
     mag=np.absolute(transfer_function)
+    # mag=mag.tolist()
     fig=plt.figure()
     plt.plot(angel*np.pi/180,mag)
     plt.ylabel('frequency')
     plt.savefig('mag.png')
-    # plt.show()
+    plt.show()
 
 def get_phase(zeros : list ,poles : list):
     transfer_function=get_transfer_function(zeros,poles)
     phase=np.angle(transfer_function)
+    # phase=phase.tolist()
     fig=plt.figure()
     plt.plot(angel*np.pi/180,phase)
     plt.ylabel('phase')
     plt.savefig('phase.png')
-    # plt.show()
+    plt.show()
 
 def all_passfilter(zeros: list,poles : list ,a: float):
     filtered_transfer_function= get_transfer_function(zeros, poles)
@@ -35,7 +37,7 @@ def all_passfilter(zeros: list,poles : list ,a: float):
     plt.ylabel('filtered phase')
     plt.savefig('filtered.png')
     return filtered_transfer_function
-    # plt.show()
+    plt.show()
 
 
 
@@ -55,14 +57,15 @@ def begin(zeros,poles,a):
 @app.route('/',methods=["GET"])
 def index():
     return render_template("index.html")
-@app.route('/',methods=["POST"])
+@app.route('/postmethod',methods=["POST"])
 def running():
-    zeros=request.form["zeros"]
-    poles=request.form["poles"]
+    zeros=request.form["Zeros"]
+    poles=request.form["Poles"]
     a=request.form["all pass filter constant"]
     begin(zeros,poles,a)
-    return render_template("index.html",zeros=zeros,poles=poles,a=a)
-
+    params={"MagnitudeX":mag,"Phase":phase}
+    # return render_template("index.html",zeros=zeros,poles=poles,a=a)
+    return jsonify(params)
 
 if __name__ == '__main__':
     app.run()
